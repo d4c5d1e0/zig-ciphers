@@ -6,7 +6,7 @@
 Based on [The 128-Bit Blockcipher CLEFIA](https://datatracker.ietf.org/doc/html/rfc6114)
 - Usage with a 192-Bit key
 ```zig
-const clefia = @import("ciphers").clefia;
+const clefia = @import("ciphers.zig").clefia;
 
 // 128-Bit block size
 var ciphertext: [16]u8 = undefined;
