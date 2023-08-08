@@ -85,6 +85,7 @@ fn Clefia(comptime p: Params) type {
             std.mem.writeIntBig(u32, dst[8..12], c[2]);
             std.mem.writeIntBig(u32, dst[12..16], c[3]);
         }
+
         pub fn decrypt(self: Self, ciphertext: *const [block_size]u8, dst: *[block_size]u8) void {
             var en: [4]u32 = undefined;
 
@@ -140,7 +141,7 @@ fn mult(comptime a: u8, b: u8) u8 {
         }
         x >>= 1;
     }
-    return @intCast(u8, p & 0xff);
+    return @intCast(p & 0xff);
 }
 
 fn x2(x: u8) u8 {
@@ -388,9 +389,6 @@ fn key_schedule_192(k: []u32, wk: []u32, rk: []u32) void {
     std.mem.copy(u32, ll[0..], y[0..4]);
     std.mem.copy(u32, lr[0..], y[4..]);
 
-    // std.debug.print("ll: {x}\n", .{ll});
-    // std.debug.print("lr: {x}\n", .{lr});
-
     // WK0 | WK1 | WK2 | WK3 <- KL XOR KR
     wk[0] = kl[0] ^ kr[0];
     wk[1] = kl[1] ^ kr[1];
@@ -462,9 +460,6 @@ fn key_schedule_256(k: []u32, wk: []u32, rk: []u32) void {
 
     std.mem.copy(u32, ll[0..], y[0..4]);
     std.mem.copy(u32, lr[0..], y[4..]);
-
-    // std.debug.print("ll: {x}\n", .{ll});
-    // std.debug.print("lr: {x}\n", .{lr});
 
     // WK0 | WK1 | WK2 | WK3 <- KL XOR KR
     wk[0] = kl[0] ^ kr[0];

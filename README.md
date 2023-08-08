@@ -1,6 +1,22 @@
 # zig-ciphers
 
 ## Zig implementation of various ciphers.
+
+Add to your `build.zig`:
+```zig
+const ciphers = @import("zig-ciphers/build.zig");
+
+// ...
+
+ciphers.addModule(exe);
+
+```
+
+And import the package:
+```zig
+const ciphers = @import("zig-ciphers")
+```
+
 ### Clefia [src](src/ciphers/clefia.zig) 
 
 Based on [The 128-Bit Blockcipher CLEFIA](https://datatracker.ietf.org/doc/html/rfc6114)
